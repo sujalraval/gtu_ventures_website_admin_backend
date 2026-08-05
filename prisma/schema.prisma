@@ -58,82 +58,61 @@ model AuditLog {
 }
 
 model Startup {
-  id              Int      @id @default(autoincrement())
-  name            String
-  slug            String   @unique
-  logoUrl         String?
-  shortDesc       String
-  category        String
-  status          Boolean  @default(true)
-  publishState    String   @default("DRAFT")
-  website         String?
-  displayOrder    Int      @default(0)
+  id            Int      @id @default(autoincrement())
+  name          String
+  logoEmoji     String?
+  logoPath      String?
+  sector        String?
+  stage         String?
+  ecosystem     String?
+  registered    String?
+  email         String?
+  phone         String?
+  website       String?
+  businessModel String?
+  problem       String?
+  market        String?
+  revenueModel  String?
+  technology    String?
+  traction      String?
+  awards        String?
+  press         String?
   
-  // Basic Info
-  tagline         String?
-  description     String
-  techArea        String?
-  businessModel   String?
-  socialMedia     String?
+  funding       Json?    // { status, amount, investors, rounds, grants, logoPath }
+  regulatory    Json?    // { dpiit, startupIndia, iso, gst, patents }
+  team          Json?    // Array of { name, role }
+  mentors       String?
   
-  // Founder & Team
-  founderName     String
-  coFounders      String?
-  designation     String?
-  founderPhotoUrl String?
-  email           String?
-  linkedIn        String?
-  teamMembers     Json?
-  
-  // Incubation & Stage
-  incubationDate  DateTime?
-  ecosystemStage  String
-  currentStage    String
-  registration    String?
-  
-  // Business Details
-  problemSolved   String
-  marketTarget    String
-  revenueModel    String?
-  products        Json?
-  
-  // Funding & Regulatory
-  fundingStatus   String?
-  fundingAmount   String?
-  investors       String?
-  investmentRound String?
-  govGrants       Json?
-  dpiitNumber     String?
-  startupIndiaCert String?
-  isoCert         String?
-  iprStatus       String?
-  gstNumber       String?
-  
-  // Achievements
-  awards          String?
-  press           String?
-  keyMetrics      Json?
-  supportReceived Json?
-  
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  publishState  String   @default("PUBLISHED") // DRAFT, REVIEW, PUBLISHED, ARCHIVED
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Mentor {
-  id              Int      @id @default(autoincrement())
-  name            String
-  slug            String   @unique
-  designation     String
-  company         String
-  expertise       Json?
-  linkedIn        String?
-  photoUrl        String?
-  bio             String
-  status          Boolean  @default(true)
-  publishState    String   @default("DRAFT")
-  displayOrder    Int      @default(0)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  name         String
+  initials     String?
+  photo        String?
+  designation  String?
+  org          String?
+  industry     String?
+  years        String?
+  mtype        Json?    // Array of strings
+  bio          String?
+  expertise    Json?    // Array of strings
+  support      Json?    // Array of strings
+  engagement   String?
+  mode         String?
+  sectors      String?
+  languages    String?
+  achievements Json?    // Array of Arrays [["number", "text"]]
+  linkedin     String?
+  website      String?
+  email        String?
+  
+  publishState String   @default("PUBLISHED") // DRAFT, REVIEW, PUBLISHED, ARCHIVED
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 enum PartnerType {
@@ -144,20 +123,16 @@ enum PartnerType {
 }
 
 model Partner {
-  id              Int         @id @default(autoincrement())
-  name            String
-  slug            String      @unique
-  type            PartnerType
-  logoUrl         String?
-  description     String
-  industry        String?
-  websiteUrl      String?
-  investmentStage String?
-  portfolioSize   String?
-  collaborationDetails String?
-  status          Boolean     @default(true)
-  publishState    String      @default("PUBLISHED")
-  displayOrder    Int         @default(0)
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
+  id           Int          @id @default(autoincrement())
+  name         String
+  emoji        String?
+  link         String?
+  category     String?
+  about        String?
+  mou          Json?        // { status, scope, since }
+  type         PartnerType  @default(CORPORATE)
+  
+  publishState String       @default("PUBLISHED") // DRAFT, REVIEW, PUBLISHED, ARCHIVED
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
 }

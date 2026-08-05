@@ -30,15 +30,6 @@ class PartnersController {
   async create(req, res) {
     try {
       const data = { ...req.body };
-      if (!data.slug) {
-        data.slug = data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-      }
-
-      const existing = await prisma.partner.findUnique({ where: { slug: data.slug } });
-      if (existing) {
-        data.slug = data.slug + '-' + Date.now();
-      }
-
       const partner = await prisma.partner.create({ data });
       res.status(201).json(partner);
     } catch (error) {

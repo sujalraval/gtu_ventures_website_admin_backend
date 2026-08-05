@@ -25,18 +25,7 @@ class StartupsController {
 
   async create(req, res) {
     try {
-      // Slugs should be unique, usually generated on the frontend or backend
       const data = { ...req.body };
-      if (!data.slug) {
-        data.slug = data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-      }
-
-      // Check for unique slug
-      const existing = await prisma.startup.findUnique({ where: { slug: data.slug } });
-      if (existing) {
-        data.slug = data.slug + '-' + Date.now();
-      }
-
       const startup = await prisma.startup.create({ data });
       res.status(201).json(startup);
     } catch (error) {
