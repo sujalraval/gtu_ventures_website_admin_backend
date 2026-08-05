@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  SUPER_ADMIN
+  EDITOR
+  CONTRIBUTOR
+  VIEWER
+}
+
+model User {
+  id            Int         @id @default(autoincrement())
+  email         String      @unique
+  password_hash String
+  role          Role        @default(VIEWER)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  auditLogs     AuditLog[]
+}
+
+model Media {
+  id           Int      @id @default(autoincrement())
+  filename     String
+  originalName String
+  mimeType     String
+  size         Int
+  url          String
+  altText      String?
+  refCount     Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Setting {
+  id          Int      @id @default(autoincrement())
+  key         String   @unique
+  value       String
+  description String?
+  updatedAt   DateTime @updatedAt
+}
+
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int?
+  user      User?    @relation(fields: [userId], references: [id])
+  action    String
+  entity    String
+  entityId  String?  
+  before    String?
+  after     String?
+  createdAt DateTime @default(now())
+}
+
+model Startup {
+  id              Int      @id @default(autoincrement())
+  name            String
+  slug            String   @unique
+  logoUrl         String?
+  shortDesc       String
+  category        String
+  status          Boolean  @default(true)
+  publishState    String   @default("DRAFT")
+  website         String?
+  displayOrder    Int      @default(0)
+  
+  // Basic Info
+  tagline         String?
+  description     String
+  techArea        String?
+  businessModel   String?
+  socialMedia     String?
+  
+  // Founder & Team
+  founderName     String
+  coFounders      String?
+  designation     String?
+  founderPhotoUrl String?
+  email           String?
+  linkedIn        String?
+  teamMembers     Json?
+  
+  // Incubation & Stage
+  incubationDate  DateTime?
+  ecosystemStage  String
+  currentStage    String
+  registration    String?
+  
+  // Business Details
+  problemSolved   String
+  marketTarget    String
+  revenueModel    String?
+  products        Json?
+  
+  // Funding & Regulatory
+  fundingStatus   String?
+  fundingAmount   String?
+  investors       String?
+  investmentRound String?
+  govGrants       Json?
+  dpiitNumber     String?
+  startupIndiaCert String?
+  isoCert         String?
+  iprStatus       String?
+  gstNumber       String?
+  
+  // Achievements
+  awards          String?
+  press           String?
+  keyMetrics      Json?
+  supportReceived Json?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
