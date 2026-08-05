@@ -10,6 +10,14 @@ const auditRoutes = require('./modules/audit/audit.routes');
 const startupsRoutes = require('./modules/startups/startups.routes');
 const mentorsRoutes = require('./modules/mentors/mentors.routes');
 const partnersRoutes = require('./modules/partners/partners.routes');
+const mousRoutes = require('./modules/mous/mous.routes');
+const schemesRoutes = require('./modules/schemes/schemes.routes');
+const verticalsRoutes = require('./modules/verticals/verticals.routes');
+const labsRoutes = require('./modules/labs/labs.routes');
+const announcementsRoutes = require('./modules/announcements/announcements.routes');
+const storiesRoutes = require('./modules/stories/stories.routes');
+const testimonialsRoutes = require('./modules/testimonials/testimonials.routes');
+const orgsRoutes = require('./modules/orgs/orgs.routes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -28,6 +36,14 @@ app.use('/api/audit', auditRoutes);
 app.use('/api/startups', startupsRoutes);
 app.use('/api/mentors', mentorsRoutes);
 app.use('/api/partners', partnersRoutes);
+app.use('/api/mous', mousRoutes);
+app.use('/api/schemes', schemesRoutes);
+app.use('/api/verticals', verticalsRoutes);
+app.use('/api/labs', labsRoutes);
+app.use('/api/announcements', announcementsRoutes);
+app.use('/api/stories', storiesRoutes);
+app.use('/api/testimonials', testimonialsRoutes);
+app.use('/api/orgs', orgsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

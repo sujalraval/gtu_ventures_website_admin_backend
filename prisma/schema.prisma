@@ -136,3 +136,135 @@ model Partner {
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 }
+model Mou {
+  id           Int      @id @default(autoincrement())
+  org          String
+  emoji        String?
+  logo         String?
+  link         String?
+  status       String?
+  number       String?
+  title        String?
+  date         String?
+  effective    String?
+  expiry       String?
+  scope        Json?
+  benefits     Json?
+  activities   Json?
+  brief        String?
+  objective    String?
+  pdf          String?
+  press        String?
+  publishState String   @default("PUBLISHED")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Scheme {
+  id            Int      @id @default(autoincrement())
+  name          String
+  code          String?
+  desc          String?
+  objectives    String?
+  eligibility   String?
+  beneficiaries Json?
+  providedBy    String?
+  authority     String?
+  type          String?
+  installments  String?
+  departments   Json?
+  category      Json?
+  sectors       Json?
+  budget        String?
+  maxGrant      String?
+  fundingType   String?
+  duration      String?
+  equityPct     String?
+  apply         String?
+  publishState  String   @default("PUBLISHED")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Vertical {
+  id           Int      @id @default(autoincrement())
+  vid          String?
+  code         String?
+  name         String
+  logoPath     String?
+  backer       String?
+  emoji        String?
+  about        String?
+  offerings    Json?
+  forWho       String?
+  publishState String   @default("PUBLISHED")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Lab {
+  id           Int      @id @default(autoincrement())
+  name         String
+  type         String?
+  location     String?
+  equipment    Json?
+  availability String?
+  bookingLink  String?
+  images       Json?
+  publishState String   @default("PUBLISHED")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Announcement {
+  id           Int      @id @default(autoincrement())
+  title        String
+  date         String?
+  category     String?
+  content      String?
+  link         String?
+  image        String?
+  publishState String   @default("PUBLISHED")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Story {
+  id           Int      @id @default(autoincrement())
+  startupName  String
+  founder      String?
+  challenge    String?
+  solution     String?
+  impact       Json?
+  quote        String?
+  coverImage   String?
+  publishState String   @default("PUBLISHED")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Testimonial {
+  id           Int      @id @default(autoincrement())
+  authorName   String
+  designation  String?
+  organization String?
+  quote        String?
+  photo        String?
+  rating       Int?
+  publishState String   @default("PUBLISHED")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Org {
+  id           Int      @id @default(autoincrement())
+  name         String
+  type         String?
+  logo         String?
+  website      String?
+  description  String?
+  contact      Json?
+  publishState String   @default("PUBLISHED")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
