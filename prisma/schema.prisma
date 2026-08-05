@@ -15,12 +15,12 @@ enum Role {
 }
 
 model User {
-  id            Int         @id @default(autoincrement())
-  email         String      @unique
+  id            Int        @id @default(autoincrement())
+  email         String     @unique
   password_hash String
-  role          Role        @default(VIEWER)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  role          Role       @default(VIEWER)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
   auditLogs     AuditLog[]
 }
 
@@ -51,14 +51,14 @@ model AuditLog {
   user      User?    @relation(fields: [userId], references: [id])
   action    String
   entity    String
-  entityId  String?  
+  entityId  String?
   before    String?
   after     String?
   createdAt DateTime @default(now())
 }
 
 model Startup {
-  id            Int      @id @default(autoincrement())
+  id            Int     @id @default(autoincrement())
   name          String
   logoEmoji     String?
   logoPath      String?
@@ -77,19 +77,19 @@ model Startup {
   traction      String?
   awards        String?
   press         String?
-  
-  funding       Json?    // { status, amount, investors, rounds, grants, logoPath }
-  regulatory    Json?    // { dpiit, startupIndia, iso, gst, patents }
-  team          Json?    // Array of { name, role }
-  mentors       String?
-  
-  publishState  String   @default("PUBLISHED") // DRAFT, REVIEW, PUBLISHED, ARCHIVED
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+
+  funding    Json? // { status, amount, investors, rounds, grants, logoPath }
+  regulatory Json? // { dpiit, startupIndia, iso, gst, patents }
+  team       Json? // Array of { name, role }
+  mentors    String?
+
+  publishState String   @default("PUBLISHED") // DRAFT, REVIEW, PUBLISHED, ARCHIVED
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Mentor {
-  id           Int      @id @default(autoincrement())
+  id           Int     @id @default(autoincrement())
   name         String
   initials     String?
   photo        String?
@@ -97,19 +97,19 @@ model Mentor {
   org          String?
   industry     String?
   years        String?
-  mtype        Json?    // Array of strings
+  mtype        Json? // Array of strings
   bio          String?
-  expertise    Json?    // Array of strings
-  support      Json?    // Array of strings
+  expertise    Json? // Array of strings
+  support      Json? // Array of strings
   engagement   String?
   mode         String?
   sectors      String?
   languages    String?
-  achievements Json?    // Array of Arrays [["number", "text"]]
+  achievements Json? // Array of Arrays [["number", "text"]]
   linkedin     String?
   website      String?
   email        String?
-  
+
   publishState String   @default("PUBLISHED") // DRAFT, REVIEW, PUBLISHED, ARCHIVED
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -123,19 +123,20 @@ enum PartnerType {
 }
 
 model Partner {
-  id           Int          @id @default(autoincrement())
-  name         String
-  emoji        String?
-  link         String?
-  category     String?
-  about        String?
-  mou          Json?        // { status, scope, since }
-  type         PartnerType  @default(CORPORATE)
-  
-  publishState String       @default("PUBLISHED") // DRAFT, REVIEW, PUBLISHED, ARCHIVED
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+  id       Int         @id @default(autoincrement())
+  name     String
+  emoji    String?
+  link     String?
+  category String?
+  about    String?
+  mou      Json? // { status, scope, since }
+  type     PartnerType @default(CORPORATE)
+
+  publishState String   @default("PUBLISHED") // DRAFT, REVIEW, PUBLISHED, ARCHIVED
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
+
 model Mou {
   id           Int      @id @default(autoincrement())
   org          String
@@ -267,4 +268,54 @@ model Org {
   publishState String   @default("PUBLISHED")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
+
+model Event {
+  id           Int      @id @default(autoincrement())
+  title        String
+  date         String?
+  location     String?
+  description  String?
+  image        String?
+  link         String?
+  status       String?
+  publishState String   @default("PUBLISHED")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model TeamMember {
+  id           Int      @id @default(autoincrement())
+  name         String
+  designation  String?
+  photo        String?
+  bio          String?
+  linkedin     String?
+  order        Int      @default(0)
+  publishState String   @default("PUBLISHED")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Resource {
+  id           Int      @id @default(autoincrement())
+  title        String
+  type         String?
+  url          String?
+  description  String?
+  publishState String   @default("PUBLISHED")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Lead {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String
+  phone       String?
+  inquiryType String?
+  message     String?
+  status      String   @default("NEW")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

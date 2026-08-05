@@ -18,6 +18,12 @@ const announcementsRoutes = require('./modules/announcements/announcements.route
 const storiesRoutes = require('./modules/stories/stories.routes');
 const testimonialsRoutes = require('./modules/testimonials/testimonials.routes');
 const orgsRoutes = require('./modules/orgs/orgs.routes');
+const usersRoutes = require('./modules/users/users.routes');
+const eventsRoutes = require('./modules/events/events.routes');
+const teamRoutes = require('./modules/team/team.routes');
+const resourcesRoutes = require('./modules/resources/resources.routes');
+const leadsRoutes = require('./modules/leads/leads.routes');
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -44,6 +50,12 @@ app.use('/api/announcements', announcementsRoutes);
 app.use('/api/stories', storiesRoutes);
 app.use('/api/testimonials', testimonialsRoutes);
 app.use('/api/orgs', orgsRoutes);
+app.use('/api/users', usersRoutes);
+app.use('/api/events', eventsRoutes);
+app.use('/api/team', teamRoutes);
+app.use('/api/resources', resourcesRoutes);
+app.use('/api/leads', leadsRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
