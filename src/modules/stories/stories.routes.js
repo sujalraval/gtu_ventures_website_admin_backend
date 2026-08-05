@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('./stories.controller');
-const { protect } = require('../../middlewares/auth');
+const { protect } = require('../../middlewares/auth.middleware');
 
 router.get('/', controller.getAll);
 router.get('/:id', controller.getById);
