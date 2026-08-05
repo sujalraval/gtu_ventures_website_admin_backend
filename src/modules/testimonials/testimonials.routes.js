@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('./testimonials.controller');
-const { protect } = require('../../middlewares/auth.middleware');
+const { authenticateToken: protect } = require('../../middlewares/auth.middleware');
 
 router.get('/', controller.getAll);
 router.get('/:id', controller.getById);
