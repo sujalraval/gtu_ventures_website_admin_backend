@@ -9,6 +9,7 @@ const settingsRoutes = require('./modules/settings/settings.routes');
 const auditRoutes = require('./modules/audit/audit.routes');
 const startupsRoutes = require('./modules/startups/startups.routes');
 const mentorsRoutes = require('./modules/mentors/mentors.routes');
+const partnersRoutes = require('./modules/partners/partners.routes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,6 +27,7 @@ app.use('/api/settings', settingsRoutes);
 app.use('/api/audit', auditRoutes);
 app.use('/api/startups', startupsRoutes);
 app.use('/api/mentors', mentorsRoutes);
+app.use('/api/partners', partnersRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

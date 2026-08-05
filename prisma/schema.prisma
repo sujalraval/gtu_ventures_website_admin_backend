@@ -135,3 +135,29 @@ model Mentor {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
+
+enum PartnerType {
+  CORPORATE
+  ECOSYSTEM
+  ACADEMIC
+  INVESTOR
+}
+
+model Partner {
+  id              Int         @id @default(autoincrement())
+  name            String
+  slug            String      @unique
+  type            PartnerType
+  logoUrl         String?
+  description     String
+  industry        String?
+  websiteUrl      String?
+  investmentStage String?
+  portfolioSize   String?
+  collaborationDetails String?
+  status          Boolean     @default(true)
+  publishState    String      @default("PUBLISHED")
+  displayOrder    Int         @default(0)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
