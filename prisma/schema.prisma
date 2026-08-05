@@ -118,3 +118,20 @@ model Startup {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
+
+model Mentor {
+  id              Int      @id @default(autoincrement())
+  name            String
+  slug            String   @unique
+  designation     String
+  company         String
+  expertise       Json?
+  linkedIn        String?
+  photoUrl        String?
+  bio             String
+  status          Boolean  @default(true)
+  publishState    String   @default("DRAFT")
+  displayOrder    Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
