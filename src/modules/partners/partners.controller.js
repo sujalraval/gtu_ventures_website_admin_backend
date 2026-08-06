@@ -8,7 +8,7 @@ class PartnersController {
       
       const partners = await prisma.partner.findMany({
         where: filter,
-        orderBy: { displayOrder: 'asc' }
+        orderBy: { id: 'desc' }
       });
       res.json(partners);
     } catch (error) {

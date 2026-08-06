@@ -4,7 +4,7 @@ class MentorsController {
   async getAll(req, res) {
     try {
       const mentors = await prisma.mentor.findMany({
-        orderBy: { displayOrder: 'asc' }
+        orderBy: { id: 'desc' }
       });
       res.json(mentors);
     } catch (error) {
